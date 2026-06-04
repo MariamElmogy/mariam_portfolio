@@ -23,7 +23,8 @@ class AboutSection extends StatelessWidget {
               eyebrow: 'About Me',
               prefix: 'Who I',
               highlight: 'Am',
-              subtitle: 'Passionate about crafting mobile experiences that matter.',
+              subtitle:
+                  'Passionate about crafting mobile experiences that matter.',
             ),
             isMobile
                 ? _buildMobileLayout(context)
@@ -71,10 +72,7 @@ class AboutSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        Text(
-          'Mariam Elmogy',
-          style: theme.textTheme.headlineLarge,
-        ),
+        Text('Mariam Elmogy', style: theme.textTheme.headlineLarge),
         const SizedBox(height: 20),
         Text(
           'Flutter developer with 2+ years building and shipping '
@@ -117,9 +115,13 @@ class AboutSection extends StatelessWidget {
         // Stats side by side
         Row(
           children: [
-            Expanded(child: StatCard(value: '2+', label: 'Years Experience')),
+            Expanded(
+              child: StatCard(value: '2+', label: 'Years Experience'),
+            ),
             const SizedBox(width: 16),
-            Expanded(child: StatCard(value: '6', label: 'Apps Shipped')),
+            Expanded(
+              child: StatCard(value: '6', label: 'Apps Shipped'),
+            ),
           ],
         ),
       ],
@@ -166,38 +168,37 @@ class _ProfilePhoto extends StatelessWidget {
         child: Image.asset(
           'assets/images/me.jpg',
           fit: BoxFit.cover,
-          errorBuilder: (_, e, s) => Center(child: Text(e.toString(), style: const TextStyle(color: Colors.red, fontSize: 10))),
+          errorBuilder: (_, e, s) => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: mobile ? 56 : 72,
+                height: mobile ? 56 : 72,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.accent.withValues(alpha: 0.1),
+                  border: Border.all(
+                    color: AppColors.accent.withValues(alpha: 0.25),
+                  ),
+                ),
+                child: Icon(
+                  Icons.person_rounded,
+                  size: mobile ? 32 : 42,
+                  color: AppColors.accent.withValues(alpha: 0.4),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                '[Profile Photo]',
+                style: GoogleFonts.inter(
+                  color: AppColors.textSecondary.withValues(alpha: 0.5),
+                  fontSize: 11,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-      // child: Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     Container(
-      //       width: mobile ? 56 : 72,
-      //       height: mobile ? 56 : 72,
-      //       decoration: BoxDecoration(
-      //         shape: BoxShape.circle,
-      //         color: AppColors.accent.withValues(alpha: 0.1),
-      //         border: Border.all(
-      //           color: AppColors.accent.withValues(alpha: 0.25),
-      //         ),
-      //       ),
-      //       child: Icon(
-      //         Icons.person_rounded,
-      //         size: mobile ? 32 : 42,
-      //         color: AppColors.accent.withValues(alpha: 0.4),
-      //       ),
-      //     ),
-      //     const SizedBox(height: 12),
-      //     Text(
-      //       'Add your photo',
-      //       style: GoogleFonts.inter(
-      //         color: AppColors.textSecondary.withValues(alpha: 0.5),
-      //         fontSize: 11,
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
