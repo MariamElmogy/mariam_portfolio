@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,8 @@ class ProjectImagePlaceholder extends StatefulWidget {
   final ProjectStatus status;
   final Color statusColor;
   final String? imageUrl;
+  final String? assetImagePath;
+  final List<String> screenshotUrls;
   final bool hovered;
   final String? appStoreUrl;
   final String? playStoreUrl;
@@ -18,6 +21,8 @@ class ProjectImagePlaceholder extends StatefulWidget {
     required this.status,
     required this.statusColor,
     this.imageUrl,
+    this.assetImagePath,
+    this.screenshotUrls = const [],
     this.hovered = false,
     this.appStoreUrl,
     this.playStoreUrl,
@@ -88,8 +93,72 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                 painter: _DotGridPainter(color: c.withValues(alpha: 0.09)),
               ),
             ),
-            // App image or animated placeholder
-            if (widget.imageUrl != null)
+            // Screenshots layout (3-phone stagger)
+            if (widget.screenshotUrls.isNotEmpty)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      if (widget.screenshotUrls.length >= 3) ...[
+                        _ScreenshotTile(
+                          url: widget.screenshotUrls[0],
+                          height: 175,
+                          borderRadius: 10,
+                          shadow: Colors.black.withValues(alpha: 0.3),
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                      _ScreenshotTile(
+                        url: widget.screenshotUrls.length >= 2
+                            ? widget.screenshotUrls[1]
+                            : widget.screenshotUrls[0],
+                        height: 200,
+                        borderRadius: 12,
+                        shadow: Colors.black.withValues(alpha: 0.5),
+                      ),
+                      if (widget.screenshotUrls.length >= 3) ...[
+                        const SizedBox(width: 8),
+                        _ScreenshotTile(
+                          url: widget.screenshotUrls[2],
+                          height: 175,
+                          borderRadius: 10,
+                          shadow: Colors.black.withValues(alpha: 0.3),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              )
+            // Local asset design preview (full-width)
+            else if (widget.assetImagePath != null)
+              Positioned.fill(
+                child: Image.asset(
+                  widget.assetImagePath!,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                  errorBuilder: (_, e, s) => const SizedBox.shrink(),
+                ),
+              )
+            // Fallback: blurred icon background + floating icon
+            else if (widget.imageUrl != null) ...[
+              Positioned.fill(
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
+                  child: Image.network(
+                    widget.imageUrl!,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (_, child, progress) =>
+                        progress == null ? child : const SizedBox.shrink(),
+                    errorBuilder: (_, e, s) => const SizedBox.shrink(),
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                child: Container(color: Colors.black.withValues(alpha: 0.45)),
+              ),
               Center(
                 child: AnimatedBuilder(
                   animation: _floatY,
@@ -98,20 +167,25 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                     child: child,
                   ),
                   child: Container(
-                    width: 100,
-                    height: 100,
+                    width: 120,
+                    height: 120,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
+                      borderRadius: BorderRadius.circular(26),
                       boxShadow: [
                         BoxShadow(
-                          color: c.withValues(alpha: 0.25),
-                          blurRadius: 24,
-                          offset: const Offset(0, 10),
+                          color: Colors.black.withValues(alpha: 0.45),
+                          blurRadius: 32,
+                          offset: const Offset(0, 12),
+                        ),
+                        BoxShadow(
+                          color: c.withValues(alpha: 0.3),
+                          blurRadius: 20,
+                          offset: const Offset(0, 4),
                         ),
                       ],
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(22),
+                      borderRadius: BorderRadius.circular(26),
                       child: Image.network(
                         widget.imageUrl!,
                         fit: BoxFit.cover,
@@ -122,7 +196,8 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                     ),
                   ),
                 ),
-              )
+              ),
+            ]
             else
               Center(
                 child: AnimatedBuilder(
@@ -260,6 +335,48 @@ class _StoreOverlayButtonState extends State<_StoreOverlayButton> {
                 color: Colors.white, size: widget.iconSize),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ScreenshotTile extends StatelessWidget {
+  final String url;
+  final double height;
+  final double borderRadius;
+  final Color shadow;
+
+  const _ScreenshotTile({
+    required this.url,
+    required this.height,
+    required this.borderRadius,
+    required this.shadow,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final width = height * (392 / 696);
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: [
+          BoxShadow(color: shadow, blurRadius: 16, offset: const Offset(0, 6)),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: url.startsWith('assets/')
+            ? Image.asset(url, fit: BoxFit.cover,
+                errorBuilder: (_, e, s) => const SizedBox.shrink())
+            : Image.network(
+                url,
+                fit: BoxFit.cover,
+                loadingBuilder: (_, child, progress) =>
+                    progress == null ? child : const SizedBox.shrink(),
+                errorBuilder: (_, e, s) => const SizedBox.shrink(),
+              ),
       ),
     );
   }

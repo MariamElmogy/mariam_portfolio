@@ -8,6 +8,8 @@ class Project {
   final String description;
   final List<String> techTags;
   final String? imageUrl;
+  final String? assetImagePath;
+  final List<String> screenshotUrls;
   final String? appStoreUrl;
   final String? playStoreUrl;
   final String? githubUrl;
@@ -25,6 +27,8 @@ class Project {
     required this.description,
     required this.techTags,
     this.imageUrl,
+    this.assetImagePath,
+    this.screenshotUrls = const [],
     this.appStoreUrl,
     this.playStoreUrl,
     this.githubUrl,
@@ -183,6 +187,14 @@ class PortfolioData {
           'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/78/7d/fa/'
           '787dfa6c-07c4-5b3a-0cee-f137ad3e6e2b/'
           'AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/512x512bb.jpg',
+      screenshotUrls: [
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ed/30/f8/'
+            'ed30f869-d18a-4100-da10-a47a09267885/app-1.png/392x696bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/62/f4/a9/'
+            '62f4a9e1-9994-c378-ee82-c364c09e9f30/app-2.png/392x696bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/f2/3f/'
+            '11f23f79-422e-3116-2945-c6fa2ff3c432/app-3.png/392x696bb.jpg',
+      ],
       appStoreUrl: 'https://apps.apple.com/eg/app/misimu/id6745457448',
     ),
     Project(
@@ -218,16 +230,28 @@ class PortfolioData {
           'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/29/82/22/'
           '2982223a-f092-969e-3c99-514c1347949b/'
           'AppIcon-0-1x_U007emarketing-0-11-0-0-85-220-0.png/512x512bb.jpg',
+      screenshotUrls: [
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7b/81/0d/'
+            '7b810d89-353b-c38a-c180-67af5a6ea46d/0.jpg/392x696bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/fa/f4/0e/'
+            'faf40e26-2ea8-7933-ae34-5e2d73eb051b/2.png/392x696bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/85/d6/dd/'
+            '85d6dd9c-9193-30a1-3b0d-2c3753a40f7a/4.png/392x696bb.jpg',
+      ],
       appStoreUrl: 'https://apps.apple.com/eg/app/selsal/id6744387094',
-      playStoreUrl: '',
     ),
     Project(
       title: 'Stretchout — Wellness App',
       status: ProjectStatus.freelance,
       description:
           'A wellness app that reminds remote workers to stretch, with scheduled '
-          'reminders and guided movement instructions.',
+          'reminders, stretch categories, and guided movement instructions with countdown timers.',
       techTags: ['Flutter', 'Dart', 'Provider', 'Local Notifications'],
+      screenshotUrls: [
+        'assets/images/stretchout_home.png',
+        'assets/images/stretchout_categories.png',
+        'assets/images/stretchout_exercise.png',
+      ],
     ),
     Project(
       title: "Children's Educational App",

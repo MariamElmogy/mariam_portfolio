@@ -75,12 +75,17 @@ class _ProjectCardState extends State<ProjectCard> {
                 status: widget.project.status,
                 statusColor: statusColor,
                 imageUrl: widget.project.imageUrl,
+                assetImagePath: widget.project.assetImagePath,
+                screenshotUrls: widget.project.screenshotUrls,
                 hovered: _hovered,
                 appStoreUrl: widget.project.appStoreUrl,
                 playStoreUrl: widget.project.playStoreUrl,
               ),
               // Card body
-              Padding(
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,6 +193,8 @@ class _ProjectCardState extends State<ProjectCard> {
                     ],
                   ),
                 ),
+              ),
+            ),
             ],
           ),
         ),
