@@ -87,6 +87,8 @@ class _NavBarState extends State<NavBar> {
                           _handleNavTap(widget.onContactTap)),
                       const SizedBox(width: 20),
                       _GitHubButton(),
+                      const SizedBox(width: 10),
+                      _ResumeButton(),
                     ],
                   ],
                 ),
@@ -117,8 +119,12 @@ class _NavBarState extends State<NavBar> {
                         _MobileNavLink('Contact', () =>
                             _handleNavTap(widget.onContactTap)),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
                           child: _GitHubButton(fullWidth: true),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                          child: _ResumeButton(fullWidth: true),
                         ),
                       ],
                     ),
@@ -236,6 +242,70 @@ class _MobileNavLink extends StatelessWidget {
             color: AppColors.textPrimary,
             fontSize: 16,
             fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ResumeButton extends StatefulWidget {
+  final bool fullWidth;
+  const _ResumeButton({this.fullWidth = false});
+
+  @override
+  State<_ResumeButton> createState() => _ResumeButtonState();
+}
+
+class _ResumeButtonState extends State<_ResumeButton> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: () => launchLink(PortfolioData.resumeUrl),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: widget.fullWidth ? double.infinity : null,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: _hovered ? AppColors.accent : AppColors.accent,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: _hovered
+                ? [
+                    BoxShadow(
+                      color: AppColors.accent.withValues(alpha: 0.35),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : [],
+          ),
+          child: Row(
+            mainAxisSize:
+                widget.fullWidth ? MainAxisSize.max : MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.download_rounded,
+                size: 15,
+                color: Colors.white,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Resume',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
         ),
       ),

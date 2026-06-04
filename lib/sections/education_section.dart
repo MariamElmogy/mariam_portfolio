@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
-import '../utils/responsive.dart';
 import '../widgets/content_container.dart';
+import '../widgets/section_sub_heading.dart';
 import '../widgets/section_title.dart';
 
 class EducationSection extends StatelessWidget {
@@ -11,45 +11,79 @@ class EducationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = Responsive.isMobile(context);
-    return Container(
-      color: AppColors.surface,
-      child: ContentContainer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SectionTitle(
-              eyebrow: 'Education & Credentials',
-              heading: 'Background',
+    return ClipRect(
+      child: Stack(
+        children: [
+          // Gradient base
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.surface,
+                    AppColors.background,
+                    AppColors.surface,
+                  ],
+                  stops: const [0.0, 0.55, 1.0],
+                ),
+              ),
             ),
-            isMobile
-                ? _buildMobileLayout(context)
-                : _buildDesktopLayout(context),
-          ],
-        ),
+          ),
+          // Decorative blob — top right
+          Positioned(
+            top: -80,
+            right: -80,
+            child: Container(
+              width: 340,
+              height: 340,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    AppColors.accent.withValues(alpha: 0.09),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Decorative blob — bottom left
+          Positioned(
+            bottom: -60,
+            left: -60,
+            child: Container(
+              width: 260,
+              height: 260,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    AppColors.accentLight.withValues(alpha: 0.07),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Content
+          ContentContainer(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(
+                  eyebrow: 'Education & Credentials',
+                  heading: 'Background',
+                ),
+                _buildEducation(context),
+                const SizedBox(height: 32),
+                _buildCertsAndAwards(context),
+              ],
+            ),
+          ),
+        ],
       ),
-    );
-  }
-
-  Widget _buildDesktopLayout(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(flex: 5, child: _buildEducation(context)),
-        const SizedBox(width: 32),
-        Expanded(flex: 4, child: _buildCertsAndAwards(context)),
-      ],
-    );
-  }
-
-  Widget _buildMobileLayout(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildEducation(context),
-        const SizedBox(height: 24),
-        _buildCertsAndAwards(context),
-      ],
     );
   }
 
@@ -58,7 +92,7 @@ class EducationSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _SubHeading(label: 'Education'),
+        SectionSubHeading(label: 'Education'),
         const SizedBox(height: 16),
         ...PortfolioData.education.map(
           (edu) => Container(
@@ -132,7 +166,7 @@ class EducationSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _SubHeading(label: 'Certifications'),
+        SectionSubHeading(label: 'Certifications'),
         const SizedBox(height: 16),
         ...PortfolioData.certifications.map(
           (cert) => Padding(
@@ -184,7 +218,7 @@ class EducationSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        _SubHeading(label: 'Awards'),
+        SectionSubHeading(label: 'Awards'),
         const SizedBox(height: 16),
         ...PortfolioData.awards.map(
           (award) => Container(
@@ -219,23 +253,6 @@ class EducationSection extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _SubHeading extends StatelessWidget {
-  final String label;
-  const _SubHeading({required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: GoogleFonts.poppins(
-        color: AppColors.textPrimary,
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-      ),
     );
   }
 }

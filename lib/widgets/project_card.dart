@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
-import '../utils/url_launcher_helper.dart';
+import 'card_link_button.dart';
+import 'project_image_placeholder.dart';
 
 class ProjectCard extends StatefulWidget {
   final Project project;
@@ -69,43 +70,9 @@ class _ProjectCardState extends State<ProjectCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Placeholder image area
-              ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(16)),
-                child: Container(
-                  height: 220,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        statusColor.withValues(alpha: 0.14),
-                        AppColors.accent.withValues(alpha: 0.08),
-                      ],
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        widget.project.status == ProjectStatus.openSource
-                            ? Icons.code_rounded
-                            : Icons.phone_android_rounded,
-                        size: 40,
-                        color: statusColor.withValues(alpha: 0.35),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Screenshot coming soon',
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: AppColors.textSecondary.withValues(alpha: 0.5),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              ProjectImagePlaceholder(
+                status: widget.project.status,
+                statusColor: statusColor,
               ),
               // Card body
               Padding(
@@ -203,19 +170,19 @@ class _ProjectCardState extends State<ProjectCard> {
                         runSpacing: 8,
                         children: [
                           if (widget.project.appStoreUrl != null)
-                            _CardLinkButton(
+                            CardLinkButton(
                                 url: widget.project.appStoreUrl!,
                                 label: 'App Store'),
                           if (widget.project.playStoreUrl != null)
-                            _CardLinkButton(
+                            CardLinkButton(
                                 url: widget.project.playStoreUrl!,
                                 label: 'Play Store'),
                           if (widget.project.githubUrl != null)
-                            _CardLinkButton(
+                            CardLinkButton(
                                 url: widget.project.githubUrl!,
                                 label: 'View Source'),
                           if (widget.project.websiteUrl != null)
-                            _CardLinkButton(
+                            CardLinkButton(
                                 url: widget.project.websiteUrl!,
                                 label: 'View Project'),
                         ],
@@ -223,64 +190,6 @@ class _ProjectCardState extends State<ProjectCard> {
                     ],
                   ],
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _CardLinkButton extends StatefulWidget {
-  final String url;
-  final String label;
-
-  const _CardLinkButton({required this.url, required this.label});
-
-  @override
-  State<_CardLinkButton> createState() => _CardLinkButtonState();
-}
-
-class _CardLinkButtonState extends State<_CardLinkButton> {
-  bool _hovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => setState(() => _hovered = true),
-      onExit: (_) => setState(() => _hovered = false),
-      child: GestureDetector(
-        onTap: () => launchLink(widget.url),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
-            color: _hovered ? AppColors.accent : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: _hovered
-                  ? AppColors.accent
-                  : AppColors.accent.withValues(alpha: 0.5),
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.label,
-                style: GoogleFonts.inter(
-                  color: _hovered ? Colors.white : AppColors.accent,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(width: 6),
-              Icon(
-                Icons.arrow_outward_rounded,
-                size: 14,
-                color: _hovered ? Colors.white : AppColors.accent,
               ),
             ],
           ),

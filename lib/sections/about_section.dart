@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import '../widgets/content_container.dart';
 import '../widgets/section_title.dart';
+import '../widgets/stat_card.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -94,50 +94,10 @@ class AboutSection extends StatelessWidget {
   Widget _buildStats(BuildContext context) {
     return Column(
       children: [
-        _StatCard(value: '2+', label: 'Years Experience'),
+        StatCard(value: '2+', label: 'Years Experience'),
         const SizedBox(height: 16),
-        _StatCard(value: '6', label: 'Apps Shipped'),
+        StatCard(value: '6', label: 'Apps Shipped'),
       ],
-    );
-  }
-}
-
-class _StatCard extends StatelessWidget {
-  final String value;
-  final String label;
-
-  const _StatCard({required this.value, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.border),
-      ),
-      child: Row(
-        children: [
-          Text(
-            value,
-            style: GoogleFonts.poppins(
-              color: AppColors.accent,
-              fontSize: 42,
-              fontWeight: FontWeight.w700,
-              height: 1,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontWeight: FontWeight.w500,
-                ),
-          ),
-        ],
-      ),
     );
   }
 }

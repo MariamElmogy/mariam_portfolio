@@ -8,6 +8,7 @@ import '../sections/skills_section.dart';
 import '../sections/work_experience_section.dart';
 import '../theme/app_theme.dart';
 import '../widgets/nav_bar.dart';
+import '../widgets/scroll_reveal.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _scrollController = ScrollController();
+  final _scrollNotifier = ValueNotifier<double>(0);
   final _aboutKey = GlobalKey();
   final _experienceKey = GlobalKey();
   final _projectsKey = GlobalKey();
@@ -47,6 +49,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _scrollNotifier.dispose();
     super.dispose();
   }
 
@@ -65,18 +68,45 @@ class _HomePageState extends State<HomePage> {
             onContactTap: () => _scrollTo(_contactKey),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  const HeroSection(),
-                  AboutSection(key: _aboutKey),
-                  WorkExperienceSection(key: _experienceKey),
-                  ProjectsSection(key: _projectsKey),
-                  SkillsSection(key: _skillsKey),
-                  EducationSection(key: _educationKey),
-                  ContactSection(key: _contactKey),
-                ],
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (n) {
+                _scrollNotifier.value = _scrollController.offset;
+                return false;
+              },
+              child: ScrollRevealScope(
+                notifier: _scrollNotifier,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    children: [
+                      const HeroSection(),
+                      ScrollReveal(
+                        delay: const Duration(milliseconds: 0),
+                        child: AboutSection(key: _aboutKey),
+                      ),
+                      ScrollReveal(
+                        delay: const Duration(milliseconds: 80),
+                        child: WorkExperienceSection(key: _experienceKey),
+                      ),
+                      ScrollReveal(
+                        delay: const Duration(milliseconds: 0),
+                        child: ProjectsSection(key: _projectsKey),
+                      ),
+                      ScrollReveal(
+                        delay: const Duration(milliseconds: 0),
+                        child: SkillsSection(key: _skillsKey),
+                      ),
+                      ScrollReveal(
+                        delay: const Duration(milliseconds: 0),
+                        child: EducationSection(key: _educationKey),
+                      ),
+                      ScrollReveal(
+                        delay: const Duration(milliseconds: 0),
+                        child: ContactSection(key: _contactKey),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
