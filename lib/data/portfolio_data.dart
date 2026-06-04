@@ -165,6 +165,21 @@ class PortfolioData {
       ],
     ),
     WorkExperience(
+      role: 'Flutter Development Diploma',
+      company: 'AMIT',
+      location: 'Alexandria, Egypt',
+      period: 'Mar 2023 – Jul 2023',
+      summary:
+          'Comprehensive diploma covering Dart fundamentals, state management, REST APIs, and responsive design.',
+      bullets: [
+        'Enhanced problem-solving skills and acquired proficiency in the Dart programming language.',
+        'Proficient in testing and debugging integrating local databases and Firebase for real-time data and user management.',
+        'Utilized the REST API integration implementation for seamless external data communication in Flutter.',
+        'Experienced in creating animations for enhancing user interfaces.',
+        'Translate and build the designs into a responsive UI code from Adobe XD and Figma.',
+      ],
+    ),
+    WorkExperience(
       role: 'Software Engineer → CTO',
       company: 'ROV Student Team',
       location: 'Alexandria, Egypt',
@@ -352,17 +367,7 @@ class PortfolioData {
       institution:
           'Arab Academy for Science & Technology, Egypt · University of Northampton, UK',
       period: '2019 – 2023',
-      detail: 'GPA 3.61 · First-Class Honours',
-    ),
-    Education(
-      degree: 'Graduation Project — Intelligent Personal Assistant for Disabled (IPAD)',
-      institution: 'Arab Academy for Science & Technology',
-      period: '2023',
-      detail: 'Grade A+',
-      description:
-          'Developed a Flutter app aiding blind and deaf users, featuring a Smart Glove '
-          'for sign language-to-text translation and an ESP32 Cam for real-time object recognition.',
-    ),
+      detail: 'GPA 3.61 · First-Class Honours',)
   ];
 
   static const certifications = <Certification>[

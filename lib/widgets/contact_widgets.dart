@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
+import '../utils/download_helper.dart';
 import '../utils/url_launcher_helper.dart';
 
 class ContactEmailButton extends StatelessWidget {
@@ -149,6 +150,7 @@ class ContactSocialButton extends StatefulWidget {
   final String url;
   final String tooltip;
   final bool isMaterial;
+  final bool isDownload;
 
   const ContactSocialButton({
     super.key,
@@ -156,6 +158,7 @@ class ContactSocialButton extends StatefulWidget {
     required this.url,
     required this.tooltip,
     this.isMaterial = false,
+    this.isDownload = false,
   });
 
   @override
@@ -174,7 +177,7 @@ class _ContactSocialButtonState extends State<ContactSocialButton> {
         onEnter: (_) => setState(() => _hovered = true),
         onExit: (_) => setState(() => _hovered = false),
         child: GestureDetector(
-          onTap: () => launchLink(widget.url),
+          onTap: () => widget.isDownload ? downloadFile(widget.url) : launchLink(widget.url),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             width: 48,
