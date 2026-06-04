@@ -74,7 +74,7 @@ class EducationSection extends StatelessWidget {
               children: [
                 const SectionTitle(
                   eyebrow: 'Education & Credentials',
-                  heading: 'Background',
+                  highlight: 'Background',
                 ),
                 _buildEducation(context),
                 const SizedBox(height: 32),

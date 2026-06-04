@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../sections/about_section.dart';
 import '../sections/contact_section.dart';
-import '../sections/education_section.dart';
 import '../sections/hero_section.dart';
 import '../sections/projects_section.dart';
 import '../sections/skills_section.dart';
@@ -24,7 +23,6 @@ class _HomePageState extends State<HomePage> {
   final _experienceKey = GlobalKey();
   final _projectsKey = GlobalKey();
   final _skillsKey = GlobalKey();
-  final _educationKey = GlobalKey();
   final _contactKey = GlobalKey();
 
   void _scrollToTop() {
@@ -95,10 +93,6 @@ class _HomePageState extends State<HomePage> {
                       ScrollReveal(
                         delay: const Duration(milliseconds: 0),
                         child: SkillsSection(key: _skillsKey),
-                      ),
-                      ScrollReveal(
-                        delay: const Duration(milliseconds: 0),
-                        child: EducationSection(key: _educationKey),
                       ),
                       ScrollReveal(
                         delay: const Duration(milliseconds: 0),

@@ -18,7 +18,9 @@ class SkillsSection extends StatelessWidget {
           children: [
             const SectionTitle(
               eyebrow: 'Skills',
-              heading: 'Technologies I Use',
+              prefix: 'Technical',
+              highlight: 'Expertise',
+              subtitle: 'My tech stack and tools I use every day.',
             ),
             Column(
               children: [

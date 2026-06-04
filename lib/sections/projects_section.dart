@@ -21,7 +21,9 @@ class ProjectsSection extends StatelessWidget {
           children: [
             const SectionTitle(
               eyebrow: 'My Projects',
-              heading: 'What I\'ve Built',
+              prefix: "What I've",
+              highlight: 'Built',
+              subtitle: 'A selection of mobile apps I\'ve shipped.',
             ),
             _ProjectGrid(
               projects: PortfolioData.projects,

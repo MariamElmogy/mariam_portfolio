@@ -5,6 +5,7 @@ import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/contact_widgets.dart';
 import '../widgets/content_container.dart';
+import '../widgets/section_title.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -12,8 +13,6 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isMobile = MediaQuery.sizeOf(context).width < 768;
-
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -34,26 +33,13 @@ class ContactSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Heading
-            Text(
-              "Let's Build Something Together",
-              style: theme.textTheme.displaySmall?.copyWith(
-                fontSize: isMobile ? 28 : 40,
-                textBaseline: TextBaseline.alphabetic,
-              ),
-              textAlign: TextAlign.center,
+            SectionTitle(
+              eyebrow: 'Contact',
+              prefix: "Get In",
+              highlight: 'Touch',
+              subtitle: "I'm open to full-time roles, freelance projects, "
+                  'and international remote opportunities.',
             ),
-            const SizedBox(height: 16),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 520),
-              child: Text(
-                'Ready to bring your Flutter app idea to life? '
-                "I'm open to full-time roles, freelance projects, "
-                'and international remote opportunities.',
-                style: theme.textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 40),
 
             // Email button
             ContactEmailButton(),
