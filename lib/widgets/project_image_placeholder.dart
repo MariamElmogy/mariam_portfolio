@@ -6,11 +6,13 @@ import '../theme/app_theme.dart';
 class ProjectImagePlaceholder extends StatefulWidget {
   final ProjectStatus status;
   final Color statusColor;
+  final String? imageUrl;
 
   const ProjectImagePlaceholder({
     super.key,
     required this.status,
     required this.statusColor,
+    this.imageUrl,
   });
 
   @override
@@ -75,57 +77,93 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                 painter: _DotGridPainter(color: c.withValues(alpha: 0.09)),
               ),
             ),
-            // Floating icon + label
-            Center(
-              child: AnimatedBuilder(
-                animation: _floatY,
-                builder: (context, child) => Transform.translate(
-                  offset: Offset(0, _floatY.value),
-                  child: child,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 64,
-                      height: 64,
-                      decoration: BoxDecoration(
-                        color: c.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: c.withValues(alpha: 0.22),
-                          width: 1.5,
+            // App image or animated placeholder
+            if (widget.imageUrl != null)
+              Center(
+                child: AnimatedBuilder(
+                  animation: _floatY,
+                  builder: (context, child) => Transform.translate(
+                    offset: Offset(0, _floatY.value),
+                    child: child,
+                  ),
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22),
+                      boxShadow: [
+                        BoxShadow(
+                          color: c.withValues(alpha: 0.25),
+                          blurRadius: 24,
+                          offset: const Offset(0, 10),
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: c.withValues(alpha: 0.14),
-                            blurRadius: 20,
-                            offset: const Offset(0, 8),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(22),
+                      child: Image.network(
+                        widget.imageUrl!,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (_, child, progress) =>
+                            progress == null ? child : const SizedBox.shrink(),
+                        errorBuilder: (_, e, s) => const SizedBox.shrink(),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            else
+              Center(
+                child: AnimatedBuilder(
+                  animation: _floatY,
+                  builder: (context, child) => Transform.translate(
+                    offset: Offset(0, _floatY.value),
+                    child: child,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 64,
+                        height: 64,
+                        decoration: BoxDecoration(
+                          color: c.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: c.withValues(alpha: 0.22),
+                            width: 1.5,
                           ),
-                        ],
+                          boxShadow: [
+                            BoxShadow(
+                              color: c.withValues(alpha: 0.14),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          isCode
+                              ? Icons.code_rounded
+                              : Icons.phone_android_rounded,
+                          size: 30,
+                          color: c.withValues(alpha: 0.6),
+                        ),
                       ),
-                      child: Icon(
-                        isCode
-                            ? Icons.code_rounded
-                            : Icons.phone_android_rounded,
-                        size: 30,
-                        color: c.withValues(alpha: 0.6),
+                      const SizedBox(height: 12),
+                      Text(
+                        'Screenshot coming soon',
+                        style: GoogleFonts.inter(
+                          color:
+                              AppColors.textSecondary.withValues(alpha: 0.45),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.3,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      'Screenshot coming soon',
-                      style: GoogleFonts.inter(
-                        color: AppColors.textSecondary.withValues(alpha: 0.45),
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

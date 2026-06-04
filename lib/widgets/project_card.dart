@@ -46,6 +46,7 @@ class _ProjectCardState extends State<ProjectCard> {
         curve: Curves.easeOut,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
+          clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
             color: _hovered ? AppColors.cardHover : AppColors.card,
             borderRadius: BorderRadius.circular(16),
@@ -73,6 +74,7 @@ class _ProjectCardState extends State<ProjectCard> {
               ProjectImagePlaceholder(
                 status: widget.project.status,
                 statusColor: statusColor,
+                imageUrl: widget.project.imageUrl,
               ),
               // Card body
               Padding(
@@ -159,35 +161,35 @@ class _ProjectCardState extends State<ProjectCard> {
                           )
                           .toList(),
                     ),
-                    // Link buttons
-                    if (widget.project.appStoreUrl != null ||
-                        widget.project.playStoreUrl != null ||
-                        widget.project.githubUrl != null ||
-                        widget.project.websiteUrl != null) ...[
-                      const SizedBox(height: 16),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          if (widget.project.appStoreUrl != null)
-                            CardLinkButton(
-                                url: widget.project.appStoreUrl!,
-                                label: 'App Store'),
-                          if (widget.project.playStoreUrl != null)
-                            CardLinkButton(
-                                url: widget.project.playStoreUrl!,
-                                label: 'Play Store'),
-                          if (widget.project.githubUrl != null)
-                            CardLinkButton(
-                                url: widget.project.githubUrl!,
-                                label: 'View Source'),
-                          if (widget.project.websiteUrl != null)
-                            CardLinkButton(
-                                url: widget.project.websiteUrl!,
-                                label: 'View Project'),
-                        ],
-                      ),
-                    ],
+                    // Always-present badge row (keeps all card heights equal)
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 54,
+                      child: widget.project.hasLinks
+                          ? Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: [
+                                if (widget.project.appStoreUrl != null)
+                                  AppStoreBadge(
+                                      url: widget.project.appStoreUrl!),
+                                if (widget.project.playStoreUrl != null)
+                                  PlayStoreBadge(
+                                      url: widget.project.playStoreUrl!),
+                                if (widget.project.githubUrl != null)
+                                  CardLinkButton(
+                                    url: widget.project.githubUrl!,
+                                    label: 'View Source',
+                                  ),
+                                if (widget.project.websiteUrl != null)
+                                  CardLinkButton(
+                                    url: widget.project.websiteUrl!,
+                                    label: 'View Project',
+                                  ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
+                    ),
                   ],
                 ),
               ),

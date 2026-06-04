@@ -7,16 +7,24 @@ class Project {
   final ProjectStatus status;
   final String description;
   final List<String> techTags;
+  final String? imageUrl;
   final String? appStoreUrl;
   final String? playStoreUrl;
   final String? githubUrl;
   final String? websiteUrl;
+
+  bool get hasLinks =>
+      appStoreUrl != null ||
+      playStoreUrl != null ||
+      githubUrl != null ||
+      websiteUrl != null;
 
   const Project({
     required this.title,
     required this.status,
     required this.description,
     required this.techTags,
+    this.imageUrl,
     this.appStoreUrl,
     this.playStoreUrl,
     this.githubUrl,
@@ -169,8 +177,11 @@ class PortfolioData {
           'A cross-platform e-commerce app with product browsing, cart, and checkout. '
           'Built and launched end-to-end as the Flutter developer.',
       techTags: ['Flutter', 'Dart', 'BLoC/Cubit', 'REST APIs', 'Firebase'],
-      appStoreUrl: 'https://apps.apple.com/eg/app/misimu/id6745457448'
-      // TODO: appStoreUrl: '...',
+      imageUrl:
+          'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/78/7d/fa/'
+          '787dfa6c-07c4-5b3a-0cee-f137ad3e6e2b/'
+          'AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/512x512bb.jpg',
+      appStoreUrl: 'https://apps.apple.com/eg/app/misimu/id6745457448',
     ),
     Project(
       title: 'White-Label Laboratory App',
