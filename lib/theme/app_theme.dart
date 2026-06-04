@@ -10,6 +10,8 @@ class AppColors {
   static const cardHover = Color(0xFFEDE9FE);
   static const accent = Color(0xFF7C3AED);
   static const accentLight = Color(0xFFA78BFA);
+  static const cyan = Color(0xFF0EA5E9);
+  static const orange = Color(0xFFF97316);
   static const textPrimary = Color(0xFF1E1B4B);
   static const textSecondary = Color(0xFF64748B);
   static const border = Color(0xFFDDD6FE);

@@ -54,17 +54,56 @@ class _HeroSectionState extends State<HeroSection>
 
     return Container(
       constraints: BoxConstraints(minHeight: size.height * 0.92),
-      decoration: BoxDecoration(
-        gradient: RadialGradient(
-          center: const Alignment(-1.2, -1.0),
-          radius: 1.4,
-          colors: [
-            AppColors.accent.withValues(alpha: 0.14),
-            AppColors.background,
-          ],
-        ),
-      ),
-      child: Center(
+      color: AppColors.background,
+      child: Stack(
+        children: [
+          // Violet blob — top left
+          Positioned(
+            top: -80,
+            left: -80,
+            child: Container(
+              width: 520,
+              height: 520,
+              decoration: BoxDecoration(
+                gradient: RadialGradient(colors: [
+                  AppColors.accent.withValues(alpha: 0.13),
+                  Colors.transparent,
+                ]),
+              ),
+            ),
+          ),
+          // Cyan blob — top right
+          Positioned(
+            top: -40,
+            right: -100,
+            child: Container(
+              width: 380,
+              height: 380,
+              decoration: BoxDecoration(
+                gradient: RadialGradient(colors: [
+                  AppColors.cyan.withValues(alpha: 0.08),
+                  Colors.transparent,
+                ]),
+              ),
+            ),
+          ),
+          // Orange blob — bottom right
+          Positioned(
+            bottom: 0,
+            right: 80,
+            child: Container(
+              width: 260,
+              height: 260,
+              decoration: BoxDecoration(
+                gradient: RadialGradient(colors: [
+                  AppColors.orange.withValues(alpha: 0.06),
+                  Colors.transparent,
+                ]),
+              ),
+            ),
+          ),
+          // Content
+          Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 900),
           child: Padding(
@@ -257,6 +296,8 @@ class _HeroSectionState extends State<HeroSection>
             ),
           ),
         ),
+          ),
+        ],
       ),
     );
   }

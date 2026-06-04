@@ -16,10 +16,18 @@ class SkillRow extends StatelessWidget {
         _ => Icons.build_rounded,
       };
 
+  Color get _color => switch (group.title) {
+        'Languages' => AppColors.orange,
+        'Mobile & Flutter' => AppColors.cyan,
+        'Architecture' => AppColors.live,
+        _ => AppColors.accent,
+      };
+
   @override
   Widget build(BuildContext context) {
     final isMobile = Responsive.isMobile(context);
 
+    final color = _color;
     final label = Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,11 +36,11 @@ class SkillRow extends StatelessWidget {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: AppColors.accent.withValues(alpha: 0.1),
+            color: color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: AppColors.accent.withValues(alpha: 0.2)),
+            border: Border.all(color: color.withValues(alpha: 0.25)),
           ),
-          child: Icon(_icon, size: 20, color: AppColors.accent),
+          child: Icon(_icon, size: 20, color: color),
         ),
         const SizedBox(width: 12),
         Text(

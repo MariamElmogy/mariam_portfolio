@@ -1,3 +1,5 @@
+import 'package:mariam_portfolio/utils/pdf_data.dart';
+
 enum ProjectStatus { live, production, freelance, openSource }
 
 class Project {
@@ -81,8 +83,7 @@ class PortfolioData {
   static const email = 'Mariamelmogy3@gmail.com';
   static const githubUrl = 'https://github.com/MariamElmogy';
   static const linkedinUrl = 'https://www.linkedin.com/in/mariam-elmogy/';
-  // TODO: Replace with your resume PDF URL (e.g. Google Drive or GitHub release)
-  static const resumeUrl = '';
+  static const resumeUrl = PdfData.pdfUrl;
 
   static const experiences = <WorkExperience>[
     WorkExperience(
@@ -168,6 +169,7 @@ class PortfolioData {
           'A cross-platform e-commerce app with product browsing, cart, and checkout. '
           'Built and launched end-to-end as the Flutter developer.',
       techTags: ['Flutter', 'Dart', 'BLoC/Cubit', 'REST APIs', 'Firebase'],
+      appStoreUrl: 'https://apps.apple.com/eg/app/misimu/id6745457448'
       // TODO: appStoreUrl: '...',
     ),
     Project(
