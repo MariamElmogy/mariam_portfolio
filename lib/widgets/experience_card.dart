@@ -5,15 +5,23 @@ import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import 'current_badge.dart';
 
-class ExperienceCard extends StatelessWidget {
+class ExperienceCard extends StatefulWidget {
   final WorkExperience experience;
 
   const ExperienceCard({super.key, required this.experience});
 
   @override
+  State<ExperienceCard> createState() => _ExperienceCardState();
+}
+
+class _ExperienceCardState extends State<ExperienceCard> {
+  bool _expanded = false;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isMobile = Responsive.isMobile(context);
+    final hasBullets = widget.experience.bullets.isNotEmpty;
 
     return Container(
       padding: const EdgeInsets.all(22),
@@ -21,7 +29,7 @@ class ExperienceCard extends StatelessWidget {
         color: AppColors.card,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: experience.isCurrent
+          color: widget.experience.isCurrent
               ? AppColors.accent.withValues(alpha: 0.3)
               : AppColors.border,
         ),
@@ -40,14 +48,15 @@ class ExperienceCard extends StatelessWidget {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (experience.isCurrent) ...[
+                    if (widget.experience.isCurrent) ...[
                       const CurrentBadge(),
                       const SizedBox(height: 8),
                     ],
-                    Text(experience.role, style: theme.textTheme.titleLarge),
+                    Text(widget.experience.role,
+                        style: theme.textTheme.titleLarge),
                     const SizedBox(height: 4),
                     Text(
-                      experience.period,
+                      widget.experience.period,
                       style: GoogleFonts.inter(
                         color: AppColors.accent.withValues(alpha: 0.9),
                         fontSize: 13,
@@ -61,7 +70,7 @@ class ExperienceCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        experience.role,
+                        widget.experience.role,
                         style: theme.textTheme.titleLarge,
                       ),
                     ),
@@ -71,14 +80,14 @@ class ExperienceCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          experience.period,
+                          widget.experience.period,
                           style: GoogleFonts.inter(
                             color: AppColors.accent.withValues(alpha: 0.9),
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        if (experience.isCurrent) ...[
+                        if (widget.experience.isCurrent) ...[
                           const SizedBox(width: 10),
                           const CurrentBadge(),
                         ],
@@ -90,7 +99,7 @@ class ExperienceCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                experience.company,
+                widget.experience.company,
                 style: GoogleFonts.inter(
                   color: AppColors.textPrimary.withValues(alpha: 0.85),
                   fontSize: 14,
@@ -108,16 +117,24 @@ class ExperienceCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(experience.location, style: theme.textTheme.bodyMedium),
+              Text(widget.experience.location,
+                  style: theme.textTheme.bodyMedium),
             ],
           ),
           const SizedBox(height: 12),
           Container(height: 0.5, color: AppColors.border),
           const SizedBox(height: 12),
-          Text(experience.summary, style: theme.textTheme.bodyMedium),
-          if (experience.bullets.isNotEmpty) ...[
+          // Summary — always visible, max 5 lines when collapsed
+          Text(
+            widget.experience.summary,
+            style: theme.textTheme.bodyMedium,
+            maxLines: _expanded ? null : 5,
+            overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
+          ),
+          // Bullets — only visible when expanded
+          if (_expanded && hasBullets) ...[
             const SizedBox(height: 12),
-            ...experience.bullets.map(
+            ...widget.experience.bullets.map(
               (b) => Padding(
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Row(
@@ -138,6 +155,23 @@ class ExperienceCard extends StatelessWidget {
                     Expanded(
                         child: Text(b, style: theme.textTheme.bodyMedium)),
                   ],
+                ),
+              ),
+            ),
+          ],
+          if (hasBullets) ...[
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () => setState(() => _expanded = !_expanded),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: Text(
+                  _expanded ? 'See less' : 'See more',
+                  style: GoogleFonts.inter(
+                    color: AppColors.accent,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

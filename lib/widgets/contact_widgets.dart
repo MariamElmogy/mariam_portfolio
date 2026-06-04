@@ -5,14 +5,61 @@ import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/url_launcher_helper.dart';
 
-class ContactEmailButton extends StatefulWidget {
+class ContactEmailButton extends StatelessWidget {
   const ContactEmailButton({super.key});
 
   @override
-  State<ContactEmailButton> createState() => _ContactEmailButtonState();
+  Widget build(BuildContext context) {
+    return _ContactCard(
+      iconColor: AppColors.accent,
+      icon: Icons.email_outlined,
+      isMaterialIcon: true,
+      title: 'Email Me',
+      subtitle: PortfolioData.email,
+      onTap: () => launchEmail(PortfolioData.email),
+    );
+  }
 }
 
-class _ContactEmailButtonState extends State<ContactEmailButton> {
+class ContactWhatsAppButton extends StatelessWidget {
+  const ContactWhatsAppButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return _ContactCard(
+      iconColor: const Color(0xFF25D366),
+      icon: FontAwesomeIcons.whatsapp,
+      isMaterialIcon: false,
+      title: 'WhatsApp',
+      subtitle: "Let's chat directly",
+      onTap: () => launchLink(
+          'https://wa.me/${PortfolioData.whatsappNumber.replaceAll('+', '')}'),
+    );
+  }
+}
+
+class _ContactCard extends StatefulWidget {
+  final Color iconColor;
+  final dynamic icon;
+  final bool isMaterialIcon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _ContactCard({
+    required this.iconColor,
+    required this.icon,
+    required this.isMaterialIcon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  State<_ContactCard> createState() => _ContactCardState();
+}
+
+class _ContactCardState extends State<_ContactCard> {
   bool _hovered = false;
 
   @override
@@ -22,45 +69,72 @@ class _ContactEmailButtonState extends State<ContactEmailButton> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () => launchEmail(PortfolioData.email),
+        onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+          width: 260,
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
           decoration: BoxDecoration(
-            color: _hovered ? AppColors.accent : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
+            color: _hovered
+                ? AppColors.card
+                : AppColors.card.withValues(alpha: 0.7),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: _hovered
-                  ? AppColors.accent
-                  : AppColors.accent.withValues(alpha: 0.5),
+                  ? widget.iconColor.withValues(alpha: 0.5)
+                  : AppColors.border,
               width: 1.5,
             ),
             boxShadow: _hovered
                 ? [
                     BoxShadow(
-                      color: AppColors.accent.withValues(alpha: 0.25),
-                      blurRadius: 20,
-                      offset: const Offset(0, 6),
+                      color: widget.iconColor.withValues(alpha: 0.12),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
                     ),
                   ]
                 : [],
           ),
-          child: Row(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.email_outlined,
-                size: 18,
-                color: _hovered ? Colors.white : AppColors.accent,
-              ),
-              const SizedBox(width: 10),
-              Text(
-                PortfolioData.email,
-                style: GoogleFonts.inter(
-                  color: _hovered ? Colors.white : AppColors.accent,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+              // Circular icon
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: widget.iconColor.withValues(alpha: _hovered ? 0.25 : 0.15),
+                  shape: BoxShape.circle,
                 ),
+                child: Center(
+                  child: widget.isMaterialIcon
+                      ? Icon(widget.icon as IconData,
+                          size: 24, color: widget.iconColor)
+                      : FaIcon(widget.icon as IconData,
+                          size: 22, color: widget.iconColor),
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Title
+              Text(
+                widget.title,
+                style: GoogleFonts.inter(
+                  color: AppColors.textPrimary,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 6),
+              // Subtitle
+              Text(
+                widget.subtitle,
+                style: GoogleFonts.inter(
+                  color: AppColors.textSecondary.withValues(alpha: 0.7),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

@@ -89,6 +89,7 @@ class PortfolioData {
   PortfolioData._();
 
   static const email = 'Mariamelmogy3@gmail.com';
+  static const whatsappNumber = '+201XXXXXXXXX'; // replace with real number
   static const githubUrl = 'https://github.com/MariamElmogy';
   static const linkedinUrl = 'https://www.linkedin.com/in/mariam-elmogy/';
   static const resumeUrl = PdfData.pdfUrl;
@@ -107,6 +108,7 @@ class PortfolioData {
         'Developed a white-label laboratory app for chemists and customers with a configurable white-labelling system and custom flavors module.',
         'Built an ebook and audiobook platform with in-app purchases and subscription plans for one-time purchase and subscriber access.',
         'Partnered with the QA team across testing phases to stabilize releases before each launch.',
+        'Delivered a Flutter course as a summer training for college students, covering Flutter fundamentals and hands-on app development.',
       ],
       isCurrent: true,
     ),

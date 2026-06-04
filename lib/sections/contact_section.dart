@@ -41,8 +41,16 @@ class ContactSection extends StatelessWidget {
                   'and international remote opportunities.',
             ),
 
-            // Email button
-            ContactEmailButton(),
+            // Contact cards
+            Wrap(
+              spacing: 20,
+              runSpacing: 16,
+              alignment: WrapAlignment.center,
+              children: const [
+                ContactEmailButton(),
+                ContactWhatsAppButton(),
+              ],
+            ),
 
             const SizedBox(height: 32),
 
