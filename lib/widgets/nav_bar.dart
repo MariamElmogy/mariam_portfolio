@@ -155,16 +155,42 @@ class _LogoState extends State<_Logo> {
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: AnimatedDefaultTextStyle(
+        child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: _hovered ? Colors.white : AppColors.accent,
-            fontSize: 20,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 1.5,
+          width: 38,
+          height: 38,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.accent,
+                AppColors.accent.withValues(alpha: 0.75),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: _hovered
+                ? [
+                    BoxShadow(
+                      color: AppColors.accent.withValues(alpha: 0.45),
+                      blurRadius: 14,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : [],
           ),
-          child: const Text('ME'),
+          child: const Center(
+            child: Text(
+              'M',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                height: 1,
+              ),
+            ),
+          ),
         ),
       ),
     );
