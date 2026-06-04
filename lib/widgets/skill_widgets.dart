@@ -13,6 +13,7 @@ class SkillRow extends StatelessWidget {
         'Languages' => Icons.code_rounded,
         'Mobile & Flutter' => Icons.phone_android_rounded,
         'Architecture' => Icons.account_tree_rounded,
+        'Teaching & Training' => Icons.school_rounded,
         _ => Icons.build_rounded,
       };
 
@@ -43,12 +44,14 @@ class SkillRow extends StatelessWidget {
           child: Icon(_icon, size: 20, color: color),
         ),
         const SizedBox(width: 12),
-        Text(
-          group.title,
-          style: GoogleFonts.poppins(
-            color: AppColors.textPrimary,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
+        Flexible(
+          child: Text(
+            group.title,
+            style: GoogleFonts.poppins(
+              color: AppColors.textPrimary,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
@@ -68,15 +71,9 @@ class SkillRow extends StatelessWidget {
     }
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(
-          width: 200,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: label,
-          ),
-        ),
+        SizedBox(width: 200, child: label),
         const SizedBox(width: 32),
         Expanded(child: chips),
       ],

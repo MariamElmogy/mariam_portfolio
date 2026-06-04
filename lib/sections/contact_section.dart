@@ -102,7 +102,7 @@ class ContactSection extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(
-                  '© 2025 Mariam Elmogy',
+                  '© 2026 Mariam Elmogy',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondary.withValues(alpha: 0.7),
                   ),

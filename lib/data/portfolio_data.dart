@@ -112,7 +112,9 @@ class PortfolioData {
         'Developed a white-label laboratory app for chemists and customers with a configurable white-labelling system and custom flavors module.',
         'Built an ebook and audiobook platform with in-app purchases and subscription plans for one-time purchase and subscriber access.',
         'Partnered with the QA team across testing phases to stabilize releases before each launch.',
-        'Delivered a Flutter course as a summer training for college students, covering Flutter fundamentals and hands-on app development.',
+        'Designed and delivered a summer Flutter training program for college students covering Dart fundamentals, state management, REST API integration, and end-to-end app development.',
+        'Structured sessions progressing from core Dart and widget basics through BLoC/Cubit, navigation, and live project build.',
+        'Guided students in building and running their own Flutter apps by the end of the program.',
       ],
       isCurrent: true,
     ),
@@ -326,6 +328,16 @@ class PortfolioData {
         'VS Code',
         'App Store Deployment',
         'Google Play Deployment',
+      ],
+    ),
+    SkillGroup(
+      title: 'Teaching & Training',
+      skills: [
+        'Flutter Instruction',
+        'Curriculum Design',
+        'Technical Mentoring',
+        'AI / ML Education',
+        'Project-Based Learning',
       ],
     ),
   ];

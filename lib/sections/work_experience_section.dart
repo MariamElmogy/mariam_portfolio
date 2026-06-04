@@ -220,7 +220,7 @@ class _EducationColumn extends StatelessWidget {
                       children: [
                         Text(
                           cert.title,
-                          style: GoogleFonts.spaceGrotesk(
+                          style: GoogleFonts.poppins(
                             color: AppColors.textPrimary,
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -326,7 +326,7 @@ class _ColumnHeader extends StatelessWidget {
         const SizedBox(width: 12),
         Text(
           label,
-          style: GoogleFonts.spaceGrotesk(
+          style: GoogleFonts.poppins(
             color: AppColors.textPrimary,
             fontSize: 17,
             fontWeight: FontWeight.w700,

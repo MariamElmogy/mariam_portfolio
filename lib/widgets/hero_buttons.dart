@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
+import '../utils/download_helper.dart';
 import '../utils/url_launcher_helper.dart';
 
 class HeroPrimaryButton extends StatefulWidget {
@@ -121,6 +122,7 @@ class HeroIconLinkButton extends StatefulWidget {
   final String url;
   final String tooltip;
   final bool isMaterial;
+  final bool isDownload;
 
   const HeroIconLinkButton({
     super.key,
@@ -128,6 +130,7 @@ class HeroIconLinkButton extends StatefulWidget {
     required this.url,
     required this.tooltip,
     this.isMaterial = false,
+    this.isDownload = false,
   });
 
   @override
@@ -146,7 +149,7 @@ class _HeroIconLinkButtonState extends State<HeroIconLinkButton> {
         onEnter: (_) => setState(() => _hovered = true),
         onExit: (_) => setState(() => _hovered = false),
         child: GestureDetector(
-          onTap: () => launchLink(widget.url),
+          onTap: () => widget.isDownload ? downloadFile(widget.url) : launchLink(widget.url),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             width: 44,

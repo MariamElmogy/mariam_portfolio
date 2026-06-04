@@ -63,7 +63,7 @@ class AboutSection extends StatelessWidget {
       children: [
         Text(
           'Flutter Developer',
-          style: GoogleFonts.spaceGrotesk(
+          style: GoogleFonts.poppins(
             color: AppColors.accent,
             fontSize: 14,
             fontWeight: FontWeight.w600,
@@ -161,35 +161,43 @@ class _ProfilePhoto extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: mobile ? 56 : 72,
-            height: mobile ? 56 : 72,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.accent.withValues(alpha: 0.1),
-              border: Border.all(
-                color: AppColors.accent.withValues(alpha: 0.25),
-              ),
-            ),
-            child: Icon(
-              Icons.person_rounded,
-              size: mobile ? 32 : 42,
-              color: AppColors.accent.withValues(alpha: 0.4),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Add your photo',
-            style: GoogleFonts.inter(
-              color: AppColors.textSecondary.withValues(alpha: 0.5),
-              fontSize: 11,
-            ),
-          ),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(
+          'assets/images/me.jpg',
+          fit: BoxFit.cover,
+          errorBuilder: (_, e, s) => const SizedBox.shrink(),
+        ),
       ),
+      // child: Column(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: [
+      //     Container(
+      //       width: mobile ? 56 : 72,
+      //       height: mobile ? 56 : 72,
+      //       decoration: BoxDecoration(
+      //         shape: BoxShape.circle,
+      //         color: AppColors.accent.withValues(alpha: 0.1),
+      //         border: Border.all(
+      //           color: AppColors.accent.withValues(alpha: 0.25),
+      //         ),
+      //       ),
+      //       child: Icon(
+      //         Icons.person_rounded,
+      //         size: mobile ? 32 : 42,
+      //         color: AppColors.accent.withValues(alpha: 0.4),
+      //       ),
+      //     ),
+      //     const SizedBox(height: 12),
+      //     Text(
+      //       'Add your photo',
+      //       style: GoogleFonts.inter(
+      //         color: AppColors.textSecondary.withValues(alpha: 0.5),
+      //         fontSize: 11,
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

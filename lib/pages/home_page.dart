@@ -77,7 +77,9 @@ class _HomePageState extends State<HomePage> {
                   controller: _scrollController,
                   child: Column(
                     children: [
-                      const HeroSection(),
+                      HeroSection(
+                        onViewWorkTap: () => _scrollTo(_projectsKey),
+                      ),
                       ScrollReveal(
                         delay: const Duration(milliseconds: 0),
                         child: AboutSection(key: _aboutKey),

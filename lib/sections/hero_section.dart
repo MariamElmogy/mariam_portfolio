@@ -8,7 +8,9 @@ import '../utils/url_launcher_helper.dart';
 import '../widgets/hero_buttons.dart';
 
 class HeroSection extends StatefulWidget {
-  const HeroSection({super.key});
+  final VoidCallback? onViewWorkTap;
+
+  const HeroSection({super.key, this.onViewWorkTap});
 
   @override
   State<HeroSection> createState() => _HeroSectionState();
@@ -124,6 +126,23 @@ class _HeroSectionState extends State<HeroSection>
                 // ),
                 // const SizedBox(height: 28),
 
+                // Greeting
+                FadeTransition(
+                  opacity: _fadeAt(0.05, 0.5),
+                  child: SlideTransition(
+                    position: _slideAt(0.05, 0.5),
+                    child: Text(
+                      'Hello I\'m',
+                      style: GoogleFonts.poppins(
+                        color: AppColors.accent,
+                        fontSize: isMobile ? 20 : 28,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+
                 // Name
                 FadeTransition(
                   opacity: _fadeAt(0.1, 0.55),
@@ -221,7 +240,7 @@ class _HeroSectionState extends State<HeroSection>
                               HeroPrimaryButton(
                                 label: 'View My Work',
                                 icon: Icons.arrow_downward_rounded,
-                                onTap: () {},
+                                onTap: widget.onViewWorkTap ?? () {},
                               ),
                               const SizedBox(height: 12),
                               HeroSecondaryButton(
@@ -250,6 +269,7 @@ class _HeroSectionState extends State<HeroSection>
                                       url: PortfolioData.resumeUrl,
                                       tooltip: 'Resume',
                                       isMaterial: true,
+                                      isDownload: true,
                                     ),
                                   ],
                                 ],
@@ -264,7 +284,7 @@ class _HeroSectionState extends State<HeroSection>
                               HeroPrimaryButton(
                                 label: 'View My Work',
                                 icon: Icons.arrow_downward_rounded,
-                                onTap: () {},
+                                onTap: widget.onViewWorkTap ?? () {},
                               ),
                               HeroSecondaryButton(
                                 label: 'Get In Touch',
@@ -286,6 +306,7 @@ class _HeroSectionState extends State<HeroSection>
                                 url: PortfolioData.resumeUrl,
                                 tooltip: 'Download Resume',
                                 isMaterial: true,
+                                isDownload: true,
                               ),
                             ],
                           ),
