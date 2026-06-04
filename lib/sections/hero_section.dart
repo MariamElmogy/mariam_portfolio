@@ -5,7 +5,6 @@ import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import '../utils/url_launcher_helper.dart';
-import '../widgets/available_badge.dart';
 import '../widgets/hero_buttons.dart';
 
 class HeroSection extends StatefulWidget {
@@ -116,14 +115,14 @@ class _HeroSectionState extends State<HeroSection>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Available badge
-                FadeTransition(
-                  opacity: _fadeAt(0.0, 0.4),
-                  child: SlideTransition(
-                    position: _slideAt(0.0, 0.45),
-                    child: const AvailableBadge(),
-                  ),
-                ),
-                const SizedBox(height: 28),
+                // FadeTransition(
+                //   opacity: _fadeAt(0.0, 0.4),
+                //   child: SlideTransition(
+                //     position: _slideAt(0.0, 0.45),
+                //     child: const AvailableBadge(),
+                //   ),
+                // ),
+                // const SizedBox(height: 28),
 
                 // Name
                 FadeTransition(
@@ -285,7 +284,7 @@ class _HeroSectionState extends State<HeroSection>
                               HeroIconLinkButton(
                                 icon: Icons.download_rounded,
                                 url: PortfolioData.resumeUrl,
-                                tooltip: 'Download CV',
+                                tooltip: 'Download Resume',
                                 isMaterial: true,
                               ),
                             ],

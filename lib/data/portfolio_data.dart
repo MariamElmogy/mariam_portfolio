@@ -214,6 +214,12 @@ class PortfolioData {
           'A real estate app for the KSA market that lets buyers track construction '
           'and handover progress on their properties in real time.',
       techTags: ['Flutter', 'Dart', 'REST APIs'],
+      imageUrl:
+          'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/29/82/22/'
+          '2982223a-f092-969e-3c99-514c1347949b/'
+          'AppIcon-0-1x_U007emarketing-0-11-0-0-85-220-0.png/512x512bb.jpg',
+      appStoreUrl: 'https://apps.apple.com/eg/app/selsal/id6744387094',
+      playStoreUrl: '',
     ),
     Project(
       title: 'Stretchout — Wellness App',

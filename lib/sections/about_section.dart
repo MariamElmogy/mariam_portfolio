@@ -92,27 +92,27 @@ class AboutSection extends StatelessWidget {
           'the Flutter ecosystem.',
           style: theme.textTheme.bodyLarge,
         ),
-        const SizedBox(height: 14),
-        Row(
-          children: [
-            Container(
-              width: 8,
-              height: 8,
-              decoration: const BoxDecoration(
-                color: AppColors.live,
-                shape: BoxShape.circle,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              'Open to local, remote, and international opportunities.',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: AppColors.accent,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
+        // const SizedBox(height: 14),
+        // Row(
+        //   children: [
+        //     Container(
+        //       width: 8,
+        //       height: 8,
+        //       decoration: const BoxDecoration(
+        //         color: AppColors.live,
+        //         shape: BoxShape.circle,
+        //       ),
+        //     ),
+        //     const SizedBox(width: 8),
+        //     Text(
+        //       'Open to local, remote, and international opportunities.',
+        //       style: theme.textTheme.bodyLarge?.copyWith(
+        //         color: AppColors.accent,
+        //         fontWeight: FontWeight.w500,
+        //       ),
+        //     ),
+        //   ],
+        // ),
         const SizedBox(height: 32),
         // Stats side by side
         Row(
