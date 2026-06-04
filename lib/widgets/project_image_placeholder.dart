@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
+import '../utils/url_launcher_helper.dart';
 
 class ProjectImagePlaceholder extends StatefulWidget {
   final ProjectStatus status;
   final Color statusColor;
   final String? imageUrl;
+  final bool hovered;
+  final String? appStoreUrl;
+  final String? playStoreUrl;
 
   const ProjectImagePlaceholder({
     super.key,
     required this.status,
     required this.statusColor,
     this.imageUrl,
+    this.hovered = false,
+    this.appStoreUrl,
+    this.playStoreUrl,
   });
 
   @override
@@ -42,6 +50,9 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
     _ctrl.dispose();
     super.dispose();
   }
+
+  bool get _hasStoreLinks =>
+      widget.appStoreUrl != null || widget.playStoreUrl != null;
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +175,90 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                   ),
                 ),
               ),
+            // Store link overlay on hover
+            if (_hasStoreLinks)
+              Positioned.fill(
+                child: AnimatedOpacity(
+                  opacity: widget.hovered ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 220),
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.52),
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (widget.appStoreUrl != null)
+                            _StoreOverlayButton(
+                              url: widget.appStoreUrl!,
+                              icon: FontAwesomeIcons.apple,
+                              iconSize: 22,
+                            ),
+                          if (widget.appStoreUrl != null &&
+                              widget.playStoreUrl != null)
+                            const SizedBox(width: 20),
+                          if (widget.playStoreUrl != null)
+                            _StoreOverlayButton(
+                              url: widget.playStoreUrl!,
+                              icon: FontAwesomeIcons.googlePlay,
+                              iconSize: 18,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StoreOverlayButton extends StatefulWidget {
+  final String url;
+  final IconData icon;
+  final double iconSize;
+
+  const _StoreOverlayButton({
+    required this.url,
+    required this.icon,
+    required this.iconSize,
+  });
+
+  @override
+  State<_StoreOverlayButton> createState() => _StoreOverlayButtonState();
+}
+
+class _StoreOverlayButtonState extends State<_StoreOverlayButton> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: () => launchLink(widget.url),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          width: 52,
+          height: 52,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _hovered
+                ? Colors.white.withValues(alpha: 0.25)
+                : Colors.white.withValues(alpha: 0.12),
+            border: Border.all(
+              color: Colors.white.withValues(alpha: _hovered ? 0.8 : 0.45),
+              width: 1.5,
+            ),
+          ),
+          child: Center(
+            child: FaIcon(widget.icon,
+                color: Colors.white, size: widget.iconSize),
+          ),
         ),
       ),
     );

@@ -51,18 +51,20 @@ class _ProjectGrid extends StatelessWidget {
     for (var i = 0; i < projects.length; i += crossAxisCount) {
       final rowItems = projects.skip(i).take(crossAxisCount).toList();
       rows.add(
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            for (var j = 0; j < rowItems.length; j++) ...[
-              if (j > 0) const SizedBox(width: 20),
-              Expanded(child: ProjectCard(project: rowItems[j])),
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (var j = 0; j < rowItems.length; j++) ...[
+                if (j > 0) const SizedBox(width: 20),
+                Expanded(child: ProjectCard(project: rowItems[j])),
+              ],
+              for (var k = rowItems.length; k < crossAxisCount; k++) ...[
+                const SizedBox(width: 20),
+                const Expanded(child: SizedBox()),
+              ],
             ],
-            for (var k = rowItems.length; k < crossAxisCount; k++) ...[
-              const SizedBox(width: 20),
-              const Expanded(child: SizedBox()),
-            ],
-          ],
+          ),
         ),
       );
       if (i + crossAxisCount < projects.length) {

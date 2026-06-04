@@ -99,41 +99,8 @@ class _AppStoreBadgeState extends State<AppStoreBadge> {
                   ]
                 : [],
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              FaIcon(FontAwesomeIcons.apple,
-                  color: Colors.white, size: 22),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Download on the',
-                    style: GoogleFonts.inter(
-                      color: Colors.white.withValues(alpha: 0.7),
-                      fontSize: 9,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 0.3,
-                      height: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'App Store',
-                    style: GoogleFonts.inter(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          child: FaIcon(FontAwesomeIcons.apple,
+              color: Colors.white, size: 20),
         ),
       ),
     );
@@ -178,41 +145,8 @@ class _PlayStoreBadgeState extends State<PlayStoreBadge> {
                   ]
                 : [],
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              FaIcon(FontAwesomeIcons.googlePlay,
-                  color: Colors.white, size: 18),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Get it on',
-                    style: GoogleFonts.inter(
-                      color: Colors.white.withValues(alpha: 0.7),
-                      fontSize: 9,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 0.3,
-                      height: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Google Play',
-                    style: GoogleFonts.inter(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          child: FaIcon(FontAwesomeIcons.googlePlay,
+              color: Colors.white, size: 18),
         ),
       ),
     );
