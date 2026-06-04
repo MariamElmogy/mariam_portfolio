@@ -210,10 +210,11 @@ class PortfolioData {
       status: ProjectStatus.production,
       description:
           'A reading and listening app where users buy books or subscribe to plans, '
-          'with in-app purchases, subscriptions, and audio playback.',
+          'with an in-app book reader, in-app purchases, subscriptions, and audio playback.',
       techTags: [
         'Flutter',
         'Dart',
+        'Book Reader',
         'In-App Purchases',
         'Subscriptions',
         'Audio Playback',
@@ -267,6 +268,11 @@ class PortfolioData {
         'MVVM',
         'Cubit',
         'Push Notifications',
+      ],
+      screenshotUrls: [
+        'assets/images/alef_home.png',
+        'assets/images/alef_arabic.png',
+        'assets/images/alef_controller.png',
       ],
     ),
   ];
