@@ -201,9 +201,15 @@ class PortfolioData {
       title: 'White-Label Laboratory App',
       status: ProjectStatus.production,
       description:
-          'A configurable white-label app for chemists and customers, supporting '
-          'multiple branded builds from a single codebase using Flutter flavors.',
+          'Two companion apps — one for chemists and one for customers — built from a single '
+          'codebase using Flutter flavors, with a configurable white-labelling system that lets '
+          'each lab brand both apps independently.',
       techTags: ['Flutter', 'Dart', 'Flavors', 'REST APIs', 'White-Label'],
+      screenshotUrls: [
+        'assets/images/lab_chemist_home.png',
+        'assets/images/lab_customer_home.png',
+        'assets/images/lab_customer_screen.png',
+      ],
     ),
     Project(
       title: 'Ebook & Audiobook Platform',
@@ -219,6 +225,11 @@ class PortfolioData {
         'Subscriptions',
         'Audio Playback',
       ],
+      screenshotUrls: [
+        'assets/images/audio_page.png',
+        'assets/images/book_home.png',
+        'assets/images/book_detail.png',
+      ]
     ),
     Project(
       title: 'Selsal — Real Estate App',
