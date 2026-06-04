@@ -97,7 +97,7 @@ class PortfolioData {
   PortfolioData._();
 
   static const email = 'Mariamelmogy3@gmail.com';
-  static const whatsappNumber = '+201XXXXXXXXX'; // replace with real number
+  static const whatsappNumber = '+201142455929';
   static const githubUrl = 'https://github.com/MariamElmogy';
   static const linkedinUrl = 'https://www.linkedin.com/in/mariam-elmogy/';
   static const resumeUrl = PdfData.pdfUrl;
