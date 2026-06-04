@@ -61,12 +61,14 @@ class Education {
   final String institution;
   final String period;
   final String? detail;
+  final String? description;
 
   const Education({
     required this.degree,
     required this.institution,
     required this.period,
     this.detail,
+    this.description,
   });
 }
 
@@ -74,11 +76,13 @@ class Certification {
   final String title;
   final String issuer;
   final String year;
+  final List<String> bullets;
 
   const Certification({
     required this.title,
     required this.issuer,
     required this.year,
+    this.bullets = const [],
   });
 }
 
@@ -348,24 +352,69 @@ class PortfolioData {
       institution:
           'Arab Academy for Science & Technology, Egypt · University of Northampton, UK',
       period: '2019 – 2023',
-      detail: 'GPA 3.61/4.0 · First-Class Honours',
+      detail: 'GPA 3.61 · First-Class Honours',
+    ),
+    Education(
+      degree: 'Graduation Project — Intelligent Personal Assistant for Disabled (IPAD)',
+      institution: 'Arab Academy for Science & Technology',
+      period: '2023',
+      detail: 'Grade A+',
+      description:
+          'Developed a Flutter app aiding blind and deaf users, featuring a Smart Glove '
+          'for sign language-to-text translation and an ESP32 Cam for real-time object recognition.',
     ),
   ];
 
   static const certifications = <Certification>[
     Certification(
-      title: 'Mobile Application Development',
-      issuer: 'DEPI — Digital Egypt Pioneers Initiative',
-      year: '2024',
+      title: 'Mobile Development Internship',
+      issuer: 'DEPI — Digital Egypt Pioneers Initiative · Alexandria',
+      year: 'Apr – Dec 2024',
     ),
     Certification(
       title: 'Flutter Development Diploma',
-      issuer: 'AMIT, Alexandria',
-      year: '2023',
+      issuer: 'AMIT · Alexandria',
+      year: 'Mar – Jul 2023',
+      bullets: [
+        'Enhanced problem-solving skills and acquired proficiency in Dart.',
+        'Proficient in testing and debugging, integrating local databases and Firebase for real-time data and user management.',
+        'Utilized REST API integration for seamless external data communication in Flutter.',
+        'Experienced in creating animations for enhancing user interfaces.',
+        'Translated and built designs into responsive UI code from Adobe XD and Figma.',
+      ],
+    ),
+    Certification(
+      title: 'Flutter Payment Integration: Stripe & PayPal',
+      issuer: 'Udemy',
+      year: 'Apr – Jul 2024',
+      bullets: [
+        'Practical implementation of integrating Stripe and PayPal payments.',
+        'Understanding the differences between payment gateways and in-app purchases.',
+        'Choosing the right payment gateway for Flutter applications.',
+      ],
+    ),
+    Certification(
+      title: 'Mastering Flutter: Responsive & Adaptive UI Design',
+      issuer: 'Udemy',
+      year: 'Jan – Mar 2024',
+      bullets: [
+        'Responsive and Adaptive UI design concepts including widgets, best practices, and performance optimization.',
+        'Built a real-world project to apply learnings.',
+      ],
+    ),
+    Certification(
+      title: 'Flutter Advanced Course — BLoC & MVVM Pattern',
+      issuer: 'Udemy',
+      year: 'Jan – Feb 2024',
+      bullets: [
+        'Deep dive into BLoC core concepts: cubits, blocs, events, and local/global access patterns.',
+        'Adopted the MVVM design pattern for clean separation of UI, business logic, and data layers.',
+      ],
     ),
   ];
 
   static const awards = <String>[
-    'MATE ROV Competition — Best Engineering Presentation; Best Programming & Image Processing (2022)',
+    'MATE ROV Competition — Best Engineering Presentation Award (2022)',
+    'MATE ROV Competition — Best Programming & Image Processing Award (2022)',
   ];
 }

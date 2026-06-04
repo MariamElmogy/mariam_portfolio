@@ -153,6 +153,13 @@ class EducationSection extends StatelessWidget {
                     ),
                   ),
                 ],
+                if (edu.description != null) ...[
+                  const SizedBox(height: 10),
+                  Text(
+                    edu.description!,
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ],
               ],
             ),
           ),
@@ -179,6 +186,7 @@ class EducationSection extends StatelessWidget {
                 border: Border.all(color: AppColors.border),
               ),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: 36,
@@ -209,6 +217,33 @@ class EducationSection extends StatelessWidget {
                           '${cert.issuer} · ${cert.year}',
                           style: theme.textTheme.bodyMedium,
                         ),
+                        if (cert.bullets.isNotEmpty) ...[
+                          const SizedBox(height: 10),
+                          ...cert.bullets.map(
+                            (b) => Padding(
+                              padding: const EdgeInsets.only(bottom: 4),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 6, right: 8),
+                                    child: Container(
+                                      width: 4,
+                                      height: 4,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.accent.withValues(alpha: 0.5),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(b, style: theme.textTheme.bodySmall),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),
