@@ -166,7 +166,7 @@ class _ProfilePhoto extends StatelessWidget {
         child: Image.asset(
           'assets/images/me.jpg',
           fit: BoxFit.cover,
-          errorBuilder: (_, e, s) => const SizedBox.shrink(),
+          errorBuilder: (_, e, s) => Center(child: Text(e.toString(), style: const TextStyle(color: Colors.red, fontSize: 10))),
         ),
       ),
       // child: Column(
