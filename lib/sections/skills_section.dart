@@ -23,6 +23,7 @@ class SkillsSection extends StatelessWidget {
               subtitle: 'My tech stack and tools I use every day.',
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 for (var i = 0; i < PortfolioData.skillGroups.length; i++) ...[
                   SkillRow(group: PortfolioData.skillGroups[i]),
