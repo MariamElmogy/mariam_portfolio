@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class CurrentBadge extends StatelessWidget {
@@ -28,7 +27,7 @@ class CurrentBadge extends StatelessWidget {
           const SizedBox(width: 5),
           Text(
             'Current',
-            style: GoogleFonts.inter(
+            style: TextStyle(fontFamily: 'Inter',
               color: AppColors.live,
               fontSize: 11,
               fontWeight: FontWeight.w600,

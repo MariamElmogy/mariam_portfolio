@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/contact_widgets.dart';
@@ -127,7 +126,7 @@ class ContactSection extends StatelessWidget {
                     ),
                     Text(
                       'Flutter',
-                      style: GoogleFonts.inter(
+                      style: TextStyle(fontFamily: 'Inter',
                         color: AppColors.accent.withValues(alpha: 0.9),
                         fontSize: 14,
                         fontWeight: FontWeight.w600,

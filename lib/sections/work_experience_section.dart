@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
@@ -133,7 +132,7 @@ class _EducationColumn extends StatelessWidget {
                       const SizedBox(width: 12),
                       Text(
                         edu.period,
-                        style: GoogleFonts.inter(
+                        style: TextStyle(fontFamily: 'Inter',
                           color: AppColors.cyan,
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -156,7 +155,7 @@ class _EducationColumn extends StatelessWidget {
                       ),
                       child: Text(
                         edu.detail!,
-                        style: GoogleFonts.inter(
+                        style: TextStyle(fontFamily: 'Inter',
                           color: AppColors.cyan,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -220,7 +219,7 @@ class _EducationColumn extends StatelessWidget {
                       children: [
                         Text(
                           cert.title,
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(fontFamily: 'Poppins',
                             color: AppColors.textPrimary,
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -229,7 +228,7 @@ class _EducationColumn extends StatelessWidget {
                         const SizedBox(height: 3),
                         Text(
                           '${cert.issuer} · ${cert.year}',
-                          style: GoogleFonts.inter(
+                          style: TextStyle(fontFamily: 'Inter',
                             color: AppColors.textSecondary,
                             fontSize: 12,
                           ),
@@ -246,7 +245,7 @@ class _EducationColumn extends StatelessWidget {
                     ),
                     child: Text(
                       cert.year,
-                      style: GoogleFonts.inter(
+                      style: TextStyle(fontFamily: 'Inter',
                         color: AppColors.orange,
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
@@ -326,7 +325,7 @@ class _ColumnHeader extends StatelessWidget {
         const SizedBox(width: 12),
         Text(
           label,
-          style: GoogleFonts.poppins(
+          style: TextStyle(fontFamily: 'Poppins',
             color: AppColors.textPrimary,
             fontSize: 17,
             fontWeight: FontWeight.w700,

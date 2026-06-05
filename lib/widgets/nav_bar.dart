@@ -46,7 +46,10 @@ class _NavBarState extends State<NavBar> {
       children: [
         ClipRect(
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            filter: ImageFilter.blur(
+              sigmaX: isMobile ? 8 : 20, 
+              sigmaY: isMobile ? 8 : 20,
+            ),
             child: Container(
               height: 64,
               decoration: const BoxDecoration(

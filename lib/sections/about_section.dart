@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import '../widgets/content_container.dart';
@@ -64,7 +63,7 @@ class AboutSection extends StatelessWidget {
       children: [
         Text(
           'Flutter Developer',
-          style: GoogleFonts.poppins(
+          style: TextStyle(fontFamily: 'Poppins',
             color: AppColors.accent,
             fontSize: 14,
             fontWeight: FontWeight.w600,
@@ -169,7 +168,7 @@ class _ProfilePhoto extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 '[Profile Photo]',
-                style: GoogleFonts.inter(
+                style: TextStyle(fontFamily: 'Inter',
                   color: AppColors.textSecondary.withValues(alpha: 0.5),
                   fontSize: 11,
                 ),

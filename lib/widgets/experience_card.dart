@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
@@ -57,7 +56,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                     const SizedBox(height: 4),
                     Text(
                       widget.experience.period,
-                      style: GoogleFonts.inter(
+                      style: TextStyle(fontFamily: 'Inter',
                         color: AppColors.accent.withValues(alpha: 0.9),
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -81,7 +80,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                       children: [
                         Text(
                           widget.experience.period,
-                          style: GoogleFonts.inter(
+                          style: TextStyle(fontFamily: 'Inter',
                             color: AppColors.accent.withValues(alpha: 0.9),
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -100,7 +99,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
             children: [
               Text(
                 widget.experience.company,
-                style: GoogleFonts.inter(
+                style: TextStyle(fontFamily: 'Inter',
                   color: AppColors.textPrimary.withValues(alpha: 0.85),
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
@@ -167,7 +166,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                 cursor: SystemMouseCursors.click,
                 child: Text(
                   _expanded ? 'See less' : 'See more',
-                  style: GoogleFonts.inter(
+                  style: TextStyle(fontFamily: 'Inter', 
                     color: AppColors.accent,
                     fontSize: 13,
                     fontWeight: FontWeight.w600,

@@ -42,7 +42,7 @@ class _ScrollRevealState extends State<ScrollReveal>
     super.initState();
     _ctrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 750),
+      duration: const Duration(milliseconds: 500),
     );
     _opacity = CurvedAnimation(parent: _ctrl, curve: Curves.easeOut);
     _slide = Tween<Offset>(
@@ -68,7 +68,7 @@ class _ScrollRevealState extends State<ScrollReveal>
     try {
       final pos = box.localToGlobal(Offset.zero);
       final screenH = MediaQuery.sizeOf(context).height;
-      if (pos.dy < screenH + 60) {
+      if (pos.dy < screenH + 150) {
         _triggered = true;
         Future.delayed(widget.delay, () {
           if (mounted) _ctrl.forward();

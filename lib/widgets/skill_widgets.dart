@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
@@ -47,7 +46,7 @@ class SkillRow extends StatelessWidget {
         Flexible(
           child: Text(
             group.title,
-            style: GoogleFonts.poppins(
+            style: TextStyle(fontFamily: 'Poppins',
               color: AppColors.textPrimary,
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -113,7 +112,7 @@ class _SkillChipState extends State<SkillChip> {
         ),
         child: Text(
           widget.label,
-          style: GoogleFonts.inter(
+          style: TextStyle(fontFamily: 'Inter',
             color: _hovered ? AppColors.accent : AppColors.textSecondary,
             fontSize: 13,
             fontWeight: FontWeight.w500,

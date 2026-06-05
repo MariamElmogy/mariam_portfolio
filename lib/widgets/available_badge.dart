@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class AvailableBadge extends StatelessWidget {
@@ -28,7 +27,7 @@ class AvailableBadge extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             'Available for new opportunities',
-            style: GoogleFonts.inter(
+            style: TextStyle(fontFamily: 'Inter',
               color: AppColors.live,
               fontSize: 13,
               fontWeight: FontWeight.w500,

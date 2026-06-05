@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class SectionSubHeading extends StatelessWidget {
@@ -10,7 +9,7 @@ class SectionSubHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: GoogleFonts.poppins(
+      style: TextStyle(fontFamily: 'Poppins',
         color: AppColors.textPrimary,
         fontSize: 16,
         fontWeight: FontWeight.w600,

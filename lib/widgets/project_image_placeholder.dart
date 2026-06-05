@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/url_launcher_helper.dart';
@@ -238,7 +237,8 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                       const SizedBox(height: 12),
                       Text(
                         'Screenshot coming soon',
-                        style: GoogleFonts.inter(
+                        style: TextStyle(
+                          fontFamily: 'Inter',
                           color:
                               AppColors.textSecondary.withValues(alpha: 0.45),
                           fontSize: 11,

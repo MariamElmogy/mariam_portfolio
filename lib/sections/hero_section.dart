@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
@@ -25,7 +24,7 @@ class _HeroSectionState extends State<HeroSection>
     super.initState();
     _ctrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1400),
+      duration: const Duration(milliseconds: 600),
     )..forward();
   }
 
@@ -41,7 +40,7 @@ class _HeroSectionState extends State<HeroSection>
       );
 
   Animation<Offset> _slideAt(double start, double end) =>
-      Tween<Offset>(begin: const Offset(0, 0.25), end: Offset.zero).animate(
+      Tween<Offset>(begin: const Offset(0, 0.15), end: Offset.zero).animate(
         CurvedAnimation(
           parent: _ctrl,
           curve: Interval(start, end, curve: Curves.easeOutCubic),
@@ -128,12 +127,12 @@ class _HeroSectionState extends State<HeroSection>
 
                 // Greeting
                 FadeTransition(
-                  opacity: _fadeAt(0.05, 0.5),
+                  opacity: _fadeAt(0.0, 0.4),
                   child: SlideTransition(
-                    position: _slideAt(0.05, 0.5),
+                    position: _slideAt(0.0, 0.4),
                     child: Text(
                       'Hello I\'m',
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(fontFamily: 'Poppins',
                         color: AppColors.accent,
                         fontSize: isMobile ? 20 : 28,
                         fontWeight: FontWeight.w500,
@@ -145,9 +144,9 @@ class _HeroSectionState extends State<HeroSection>
 
                 // Name
                 FadeTransition(
-                  opacity: _fadeAt(0.1, 0.55),
+                  opacity: _fadeAt(0.0, 0.5),
                   child: SlideTransition(
-                    position: _slideAt(0.1, 0.55),
+                    position: _slideAt(0.0, 0.5),
                     child: Text(
                       'Mariam Elmogy',
                       style:
@@ -163,16 +162,16 @@ class _HeroSectionState extends State<HeroSection>
 
                 // Title
                 FadeTransition(
-                  opacity: _fadeAt(0.2, 0.6),
+                  opacity: _fadeAt(0.1, 0.6),
                   child: SlideTransition(
-                    position: _slideAt(0.2, 0.6),
+                    position: _slideAt(0.1, 0.6),
                     child: ShaderMask(
                       shaderCallback: (bounds) => const LinearGradient(
                         colors: [AppColors.accent, AppColors.accentLight],
                       ).createShader(bounds),
                       child: Text(
                         'Flutter Developer',
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(fontFamily: 'Poppins',
                           color: Colors.white,
                           fontSize: isMobile ? 24 : 36,
                           fontWeight: FontWeight.w600,
@@ -186,9 +185,9 @@ class _HeroSectionState extends State<HeroSection>
 
                 // Bio
                 FadeTransition(
-                  opacity: _fadeAt(0.3, 0.7),
+                  opacity: _fadeAt(0.2, 0.7),
                   child: SlideTransition(
-                    position: _slideAt(0.3, 0.7),
+                    position: _slideAt(0.2, 0.7),
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 620),
                       child: Text(
@@ -208,7 +207,7 @@ class _HeroSectionState extends State<HeroSection>
 
                 // Location chip
                 FadeTransition(
-                  opacity: _fadeAt(0.35, 0.72),
+                  opacity: _fadeAt(0.2, 0.7),
                   child: Row(
                     children: [
                       Icon(
@@ -230,9 +229,9 @@ class _HeroSectionState extends State<HeroSection>
 
                 // CTA Buttons
                 FadeTransition(
-                  opacity: _fadeAt(0.45, 0.85),
+                  opacity: _fadeAt(0.3, 0.8),
                   child: SlideTransition(
-                    position: _slideAt(0.45, 0.85),
+                    position: _slideAt(0.3, 0.8),
                     child: isMobile
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,

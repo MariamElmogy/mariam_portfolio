@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import 'card_link_button.dart';
@@ -121,7 +120,7 @@ class _ProjectCardState extends State<ProjectCard> {
                               const SizedBox(width: 6),
                               Text(
                                 _statusLabel,
-                                style: GoogleFonts.inter(
+                                style: TextStyle(fontFamily: 'Inter',
                                   color: statusColor,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w600,
@@ -172,7 +171,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                   ),
                                   child: Text(
                                     tag,
-                                    style: GoogleFonts.inter(
+                                    style: TextStyle(fontFamily: 'Inter',
                                       color: AppColors.accent.withValues(
                                         alpha: 0.9,
                                       ),

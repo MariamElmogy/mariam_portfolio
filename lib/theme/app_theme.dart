@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
   AppColors._();
@@ -35,65 +34,65 @@ class AppTheme {
         onSurface: AppColors.textPrimary,
       ),
       scaffoldBackgroundColor: AppColors.background,
-      textTheme: GoogleFonts.interTextTheme().copyWith(
-        displayLarge: GoogleFonts.poppins(
+      textTheme: const TextTheme().copyWith(
+        displayLarge: TextStyle(fontFamily: 'Poppins',
           color: AppColors.textPrimary,
           fontSize: 64,
           fontWeight: FontWeight.w700,
           letterSpacing: -1.5,
           height: 1.1,
         ),
-        displayMedium: GoogleFonts.poppins(
+        displayMedium: TextStyle(fontFamily: 'Poppins',
           color: AppColors.textPrimary,
           fontSize: 48,
           fontWeight: FontWeight.w700,
           letterSpacing: -0.5,
           height: 1.15,
         ),
-        displaySmall: GoogleFonts.poppins(
+        displaySmall: TextStyle(fontFamily: 'Poppins',
           color: AppColors.textPrimary,
           fontSize: 36,
           fontWeight: FontWeight.w600,
           height: 1.2,
         ),
-        headlineLarge: GoogleFonts.poppins(
+        headlineLarge: TextStyle(fontFamily: 'Poppins',
           color: AppColors.textPrimary,
           fontSize: 28,
           fontWeight: FontWeight.w600,
         ),
-        headlineMedium: GoogleFonts.poppins(
+        headlineMedium: TextStyle(fontFamily: 'Poppins',
           color: AppColors.textPrimary,
           fontSize: 22,
           fontWeight: FontWeight.w600,
         ),
-        titleLarge: GoogleFonts.poppins(
+        titleLarge: TextStyle(fontFamily: 'Poppins',
           color: AppColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
-        bodyLarge: GoogleFonts.inter(
+        bodyLarge: TextStyle(fontFamily: 'Inter',
           color: AppColors.textSecondary,
           fontSize: 16,
           height: 1.75,
         ),
-        bodyMedium: GoogleFonts.inter(
+        bodyMedium: TextStyle(fontFamily: 'Inter',
           color: AppColors.textSecondary,
           fontSize: 14,
           height: 1.65,
         ),
-        labelLarge: GoogleFonts.inter(
+        labelLarge: TextStyle(fontFamily: 'Inter',
           color: AppColors.textPrimary,
           fontSize: 14,
           fontWeight: FontWeight.w600,
           letterSpacing: 0.3,
         ),
-        labelMedium: GoogleFonts.inter(
+        labelMedium: TextStyle(fontFamily: 'Inter',
           color: AppColors.textSecondary,
           fontSize: 12,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.8,
         ),
-        labelSmall: GoogleFonts.inter(
+        labelSmall: TextStyle(fontFamily: 'Inter',
           color: AppColors.textSecondary,
           fontSize: 11,
           fontWeight: FontWeight.w500,

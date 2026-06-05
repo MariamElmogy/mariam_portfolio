@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/content_container.dart';
@@ -119,7 +118,7 @@ class EducationSection extends StatelessWidget {
                     const SizedBox(width: 12),
                     Text(
                       edu.period,
-                      style: GoogleFonts.inter(
+                      style: TextStyle(fontFamily: 'Inter',
                         color: AppColors.accent.withValues(alpha: 0.9),
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -145,7 +144,7 @@ class EducationSection extends StatelessWidget {
                     ),
                     child: Text(
                       edu.detail!,
-                      style: GoogleFonts.inter(
+                      style: TextStyle(fontFamily: 'Inter',
                         color: AppColors.accent.withValues(alpha: 0.9),
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
