@@ -1,4 +1,4 @@
 class PdfData {
   static const String pdfUrl =
-      'assets/pdf/Mariam_Elmogy_Flutter_Developer_Resume.pdf';
+      'https://drive.google.com/file/d/1JaRavbxizb-iemPJFZjDl7OWhXJYWs0R/view?usp=sharing';
 }

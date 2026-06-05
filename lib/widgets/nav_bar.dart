@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
-import '../utils/download_helper.dart';
+
 import '../utils/url_launcher_helper.dart';
 
 class NavBar extends StatefulWidget {
@@ -297,7 +297,7 @@ class _ResumeButtonState extends State<_ResumeButton> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () => downloadFile(PortfolioData.resumeUrl),
+        onTap: () => launchLink(PortfolioData.resumeUrl),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           width: widget.fullWidth ? double.infinity : null,
@@ -321,7 +321,7 @@ class _ResumeButtonState extends State<_ResumeButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.download_rounded,
+                Icons.description_outlined,
                 size: 15,
                 color: Colors.white,
               ),

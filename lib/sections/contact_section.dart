@@ -82,7 +82,7 @@ class ContactSection extends StatelessWidget {
                     url: PortfolioData.resumeUrl,
                     tooltip: 'Resume',
                     isMaterial: true,
-                    isDownload: true,
+                    isDownload: false,
                   ),
                 ],
               ],
