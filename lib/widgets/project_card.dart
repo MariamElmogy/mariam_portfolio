@@ -39,7 +39,9 @@ class _ProjectCardState extends State<ProjectCard> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       cursor: SystemMouseCursors.basic,
-      child: AnimatedScale(
+      child: GestureDetector(
+        onTap: () => setState(() => _hovered = !_hovered),
+        child: AnimatedScale(
         scale: _hovered ? 1.015 : 1.0,
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeOut,
@@ -212,6 +214,7 @@ class _ProjectCardState extends State<ProjectCard> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

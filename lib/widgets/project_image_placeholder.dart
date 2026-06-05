@@ -256,12 +256,14 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                 child: AnimatedOpacity(
                   opacity: widget.hovered ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 220),
-                  child: Container(
-                    color: Colors.black.withValues(alpha: 0.52),
-                    child: Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
+                  child: IgnorePointer(
+                    ignoring: !widget.hovered,
+                    child: Container(
+                      color: Colors.black.withValues(alpha: 0.52),
+                      child: Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
                           if (widget.appStoreUrl != null)
                             _StoreOverlayButton(
                               url: widget.appStoreUrl!,
@@ -283,6 +285,7 @@ class _ProjectImagePlaceholderState extends State<ProjectImagePlaceholder>
                   ),
                 ),
               ),
+            ),
           ],
         ),
       ),
